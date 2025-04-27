@@ -1,0 +1,214 @@
+CREATE TABLE users (
+    id NUMBER PRIMARY KEY,
+    name VARCHAR2(255) NOT NULL,
+    email VARCHAR2(255) NOT NULL UNIQUE,
+    password VARCHAR2(255) NOT NULL,
+    role VARCHAR2(50) DEFAULT 'user' -- default role
+);
+
+
+
+CREATE TABLE movies (
+    id NUMBER PRIMARY KEY,
+    title VARCHAR2(255) NOT NULL,
+    avgrating NUMBER(3,1) DEFAULT 0.0,
+    release_date DATE,
+    description CLOB,
+    poster_url VARCHAR2(500)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE actors (
+    id NUMBER PRIMARY KEY,
+    name VARCHAR2(255) NOT NULL
+);
+
+CREATE SEQUENCE actors_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE users_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE movies_seq START WITH 1 INCREMENT BY 1;
+
+
+
+CREATE TABLE actor_movies (
+    actor_id NUMBER,
+    movie_id NUMBER,
+    PRIMARY KEY (actor_id, movie_id),
+    FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE CASCADE,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+);
+
+
+
+
+CREATE TABLE reviews (
+    id NUMBER PRIMARY KEY,
+    user_id NUMBER,
+    movie_id NUMBER,
+    text CLOB,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+);
+
+
+
+
+
+CREATE TABLE watchlist (
+    user_id NUMBER,
+    movie_id NUMBER,
+    PRIMARY KEY (user_id, movie_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+INSERT INTO users (id, name, email, password, role) 
+values (users_seq.NEXTVAL,'omar','omar@gmail.com','password','user');
+
+-- Insert 10 fake admins using the sequence to auto-generate IDs
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Alice Walker', 'alicewalker1@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Bob Green', 'bobgreen2@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Charlie King', 'charlieking3@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Diana Scott', 'dianascott4@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Edward Harris', 'edwardharris5@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Fiona Lewis', 'fionalewis6@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'George Adams', 'georgeadams7@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Hannah Carter', 'hannahcarter8@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Ian Mitchell', 'ianmitchell9@example.com', 'password123', 'admin');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Julia Parker', 'juliaparker10@example.com', 'password123', 'admin');
+
+
+
+
+
+-- Insert 10 fake users using the sequence to auto-generate IDs
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'John Doe', 'johndoe1@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Jane Smith', 'janesmith2@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Michael Johnson', 'michaeljohnson3@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Emily Davis', 'emilydavis4@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'David Williams', 'davidwilliams5@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Sarah Brown', 'sarahbrown6@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Chris Wilson', 'chriswilson7@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Jessica Taylor', 'jessicataylor8@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Matthew Clark', 'matthewclark9@example.com', 'password123', 'user');
+
+INSERT INTO users (id, name, email, password, role) 
+VALUES (users_seq.NEXTVAL, 'Laura Martinez', 'lauramartinez10@example.com', 'password123', 'user');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'The Silent Ocean', 7.8, TO_DATE('2023-03-15', 'YYYY-MM-DD'), 'A thrilling adventure set in a futuristic world where humans explore the mysteries of the deep sea.', 'https://example.com/poster1.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'The Silent Ocean', 7.8, TO_DATE('2023-03-15', 'YYYY-MM-DD'), 'A thrilling adventure set in a futuristic world where humans explore the mysteries of the deep sea.', 'https://example.com/poster1.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'Echoes of Tomorrow', 8.5, TO_DATE('2022-11-20', 'YYYY-MM-DD'), 'A time-travel drama where the future and the past collide, changing the course of history.', 'https://example.com/poster2.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'Galaxy Fighters', 6.7, TO_DATE('2024-01-10', 'YYYY-MM-DD'), 'An action-packed space opera where teams of fighters battle to protect the galaxy from evil forces.', 'https://example.com/poster3.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'Shadows of the Forgotten', 7.3, TO_DATE('2021-05-22', 'YYYY-MM-DD'), 'A mystery thriller about a group of people searching for a missing artifact that holds dark secrets.', 'https://example.com/poster4.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'The Lost City', 8.0, TO_DATE('2023-06-05', 'YYYY-MM-DD'), 'A group of explorers embarks on a dangerous journey to uncover an ancient, hidden city.', 'https://example.com/poster5.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'Heartbeats', 7.9, TO_DATE('2020-09-25', 'YYYY-MM-DD'), 'A romantic drama about two people who meet by chance and fall in love against the backdrop of a busy city.', 'https://example.com/poster6.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'Underwater', 6.3, TO_DATE('2022-02-17', 'YYYY-MM-DD'), 'A team of scientists and explorers must survive after their underwater station is destroyed in a sudden catastrophe.', 'https://example.com/poster7.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'City of Dreams', 9.0, TO_DATE('2023-08-12', 'YYYY-MM-DD'), 'A dramatic tale of a young man’s rise to fame and the personal sacrifices that come with success.', 'https://example.com/poster8.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'Moonlight Escape', 8.3, TO_DATE('2021-12-30', 'YYYY-MM-DD'), 'A science-fiction movie where the protagonist attempts to escape an alien moon after being stranded during a research mission.', 'https://example.com/poster9.jpg');
+
+INSERT INTO movies (id, title, avgrating, release_date, description, poster_url)
+VALUES (movies_seq.NEXTVAL, 'The Final Hour', 7.6, TO_DATE('2020-10-05', 'YYYY-MM-DD'), 'A gripping thriller about a deadly virus outbreak that threatens the entire world in the final hours before it spreads globally.', 'https://example.com/poster10.jpg');
+
+COMMIT;
+
