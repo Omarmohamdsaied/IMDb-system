@@ -34,24 +34,19 @@ namespace SWELab1
         {
             try
             {
-                string query = "SELECT title, avgrating, release_date, description FROM movies WHERE id = :movieId";
+                //string query = "SELECT title, avgrating, release_date, description FROM movies WHERE id = :movieId";
 
-                OracleCommand cmd = new OracleCommand(query, new OracleConnection(ordb));
-                cmd.Parameters.Add(new OracleParameter("movieId", movieId));
+                //OracleCommand cmd = new OracleCommand(query, new OracleConnection(ordb));
+                //cmd.Parameters.Add(new OracleParameter("movieId", movieId));
 
-                OracleDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    // Populate the labels or other controls with the data
-                    label1.Text = reader["title"].ToString();
-                    label2.Text = "Rating: " + reader["avgrating"].ToString();
-                    label3.Text = "Release Date: " + reader["release_date"].ToString();
-                    label4.Text = reader["description"].ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Movie not found!");
-                }
+                //OracleDataReader reader = cmd.ExecuteReader();
+                //if (reader.Read())
+                //{
+                //    // Populate the labels or other controls with the data
+                label1.Text ="hello world";
+                //    label2.Text = "Rating: " + reader["avgrating"].ToString();
+                //    label3.Text = "Release Date: " + reader["release_date"].ToString();
+                //    label4.Text = reader["description"].ToString();
             }
             catch (Exception ex)
             {
