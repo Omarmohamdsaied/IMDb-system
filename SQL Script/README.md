@@ -146,9 +146,3 @@ Deletes a movie and all related data. Admin use only.
 - **OUT**: `out_msg`
 
 ---
-
-## 💡 Notes
-
-- Passwords are **hashed in the C# application**, not in PL/SQL.
-- Admins can use procedures like `DeleteMovie` or `DeleteReview` with elevated permissions.
-- Search and detail procedures return `REF CURSOR` results, which can be read using `OracleDataReader` in C#.
