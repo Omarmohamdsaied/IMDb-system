@@ -103,6 +103,16 @@ namespace SWELab1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _360_F_610184436_4O7qmwXfpCx6Bl5DWaVlkEjqwgp9A9Dx {
+            get {
+                object obj = ResourceManager.GetObject("360_F_610184436_4O7qmwXfpCx6Bl5DWaVlkEjqwgp9A9Dx", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _4 {
             get {
                 object obj = ResourceManager.GetObject("4", resourceCulture);
@@ -153,6 +163,26 @@ namespace SWELab1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _8b955864_7307_4d41_8ded_c194170f5305_2729152590 {
+            get {
+                object obj = ResourceManager.GetObject("8b955864-7307-4d41-8ded-c194170f5305-2729152590", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ae4378f93ef100863a42c52c23c1640c {
+            get {
+                object obj = ResourceManager.GetObject("ae4378f93ef100863a42c52c23c1640c", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap assets_aboutamazon {
             get {
                 object obj = ResourceManager.GetObject("assets.aboutamazon", resourceCulture);
@@ -176,6 +206,26 @@ namespace SWELab1.Properties {
         internal static System.Drawing.Bitmap gametiles_com_imdb_mobile {
             get {
                 object obj = ResourceManager.GetObject("gametiles_com.imdb.mobile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imdb_internet_movie_database5351 {
+            get {
+                object obj = ResourceManager.GetObject("imdb-internet-movie-database5351", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_black_and_white_quadro_yellow_imdb_white_text_rectangle {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-black-and-white-quadro-yellow-imdb-white-text-rectangle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

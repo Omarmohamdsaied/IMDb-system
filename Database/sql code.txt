@@ -212,3 +212,95 @@ VALUES (movies_seq.NEXTVAL, 'The Final Hour', 7.6, TO_DATE('2020-10-05', 'YYYY-M
 
 COMMIT;
 
+
+
+select * from movies where id =12;
+
+
+
+
+
+desc actors;
+
+
+
+
+
+      SELECT a.name 
+      FROM actors a
+      JOIN actor_movies am ON a.id = am.actor_id
+      WHERE am.movie_id = 6
+      
+      
+      
+      
+      CREATE TABLE likes (
+    user_id NUMBER,
+    movie_id NUMBER,
+    PRIMARY KEY (user_id, movie_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (movie_id) REFERENCES movies(id)
+);
+
+
+insert into reviews (id , movie_id, text, user_id) values(1,6,"wow" , 21);
+commit;
+INSERT INTO reviews (id, movie_id, text, user_id)
+VALUES (1, 6, 'wow', 21);
+COMMIT;
+select * from revies;
+
+CREATE OR REPLACE PROCEDURE get_movie_details (
+    p_movie_id       IN  NUMBER,
+    p_title          OUT VARCHAR2,
+    p_avgrating      OUT NUMBER,
+    p_release_date   OUT DATE,
+    p_description    OUT CLOB
+)
+AS
+BEGIN
+    SELECT title, avgrating, release_date, description
+    INTO p_title, p_avgrating, p_release_date, p_description
+    FROM movies
+    WHERE id = p_movie_id;
+END;
+/
+commit;
+
+
+CREATE OR REPLACE PROCEDURE check_like_exists (
+    p_movie_id   IN  NUMBER,
+    p_user_id    IN  NUMBER,
+    p_exists     OUT NUMBER
+)
+AS
+BEGIN
+    SELECT COUNT(*)
+    INTO p_exists
+    FROM likes
+    WHERE movie_id = p_movie_id AND user_id = p_user_id;
+END;
+/
+
+
+
+desc movies;
+  
+
+CREATE SEQUENCE user_seq
+START WITH 22
+INCREMENT BY 1;
+
+
+CREATE SEQUENCE review_seq
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+commit;
+
+UPDATE movies
+SET poster_url = 'E:\admin swe\IMDb-system\films_photos\TheLostCityPoster.jpg'
+WHERE title = 'The Lost City';
+commit;
