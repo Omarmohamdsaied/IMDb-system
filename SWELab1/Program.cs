@@ -17,7 +17,9 @@ namespace SWELab1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new IMDb());
-            Application.Run(new UserForm());
+            Application.Run(new UserForm("21"));
+            //Application.Run(new RegisterationForm());
+            //Application.Run(new AdminForm("11"));
         }
     }
 }

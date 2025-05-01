@@ -41,12 +41,7 @@ namespace SWELab1
             cmd.CommandType = CommandType.Text;
 
             OracleDataReader reader = cmd.ExecuteReader();
-            /*while (reader.Read())
-            {
-                comboBox1.Items.Add(reader[0]);
-            }
-            reader.Close();*/
-
+       
 
 
         }
@@ -66,6 +61,9 @@ namespace SWELab1
 
         }
 
+        
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             using (OracleConnection conn = new OracleConnection(ordb))
@@ -73,36 +71,37 @@ namespace SWELab1
                 try
                 {
                     conn.Open();
-                    string query = "SELECT role FROM users WHERE email = :email AND password = :password";
+                    string query = "SELECT id, role FROM users WHERE email = :email AND password = :password";
+
                     using (OracleCommand cmd = new OracleCommand(query, conn))
                     {
-                        cmd.Parameters.Add(new OracleParameter("email", Email.Text));
-                        cmd.Parameters.Add(new OracleParameter("password", textBox2.Text));
+                        cmd.Parameters.Add("email", Email.Text);
+                        cmd.Parameters.Add("password", textBox2.Text);
 
-                        object roleObj = cmd.ExecuteScalar();
-
-                        if (roleObj != null)
+                        using (OracleDataReader reader = cmd.ExecuteReader())
                         {
-                            string role = roleObj.ToString();
-                           // MessageBox.Show("Login successful! Role: " + role);
-
-                            // Redirect based on role
-                            if (role == "user")
+                            if (reader.Read())
                             {
-                                UserForm userForm = new UserForm();
-                                userForm.Show();
-                            }
-                            else if (role == "admin")
-                            {
-                                AdminForm adminForm = new AdminForm();
-                                adminForm.Show();
-                            }
+                                string userId = reader["id"].ToString();
+                                string role = reader["role"].ToString();
 
-                            this.Hide(); // Hide the login form
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid email or password.");
+                                if (role == "user")
+                                {
+                                    UserForm userForm = new UserForm(userId); // Pass ID to UserForm constructor
+                                    userForm.Show();
+                                }
+                                else if (role == "admin")
+                                {
+                                    AdminForm adminForm = new AdminForm(userId);
+                                    adminForm.Show();
+                                }
+
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid email or password.");
+                            }
                         }
                     }
                 }
@@ -116,12 +115,13 @@ namespace SWELab1
         private void button2_Click(object sender, EventArgs e)
         {
             RegisterationForm RegForm = new RegisterationForm();
+            RegForm.Owner = this;
             RegForm.Show();
             this.Hide();
-            //Application.Exit();
+           
 
         }
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void LogIn_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }

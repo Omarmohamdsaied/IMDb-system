@@ -52,7 +52,7 @@ namespace SWELab1
                 try
                 {
                     conn.Open();
-                    string insertQuery = "INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, 'user')";
+                    string insertQuery = "INSERT INTO users (id,name, email, password, role) VALUES (user_seq.nextval,:name, :email, :password, 'user')";
                     using (OracleCommand cmd = new OracleCommand(insertQuery, conn))
                     {
                         cmd.Parameters.Add(new OracleParameter("name", name));
@@ -62,7 +62,8 @@ namespace SWELab1
 
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Registration successful!");
-
+                        LogIn login = new LogIn();
+                        login.Show();
                         this.Close(); // Optionally return to login form
                     }
                 }
@@ -78,10 +79,22 @@ namespace SWELab1
         }
 
                private void RegisterationForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
+               {
+                    Application.Exit();
+               }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (this.Owner != null)
+            {
+                this.Owner.Show();   // Show the previous form
+            }
+            else
+            {
+                Application.Exit();  // If no owner, ensure app shuts down
+            }
+            this.Close();
+        }
     }
 
 

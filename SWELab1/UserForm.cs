@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
+using static SWELab1.AdminForm;
 
 
 namespace SWELab1
@@ -20,9 +21,11 @@ namespace SWELab1
         OracleConnection conn;
         OracleDataAdapter adapter;
         DataSet ds;
-        public UserForm()
+        private string userId;
+        public UserForm(string id)
         {
             InitializeComponent();
+            userId = id;
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -35,18 +38,25 @@ namespace SWELab1
         {
             try
             {
-                //using (OracleConnection conn = new OracleConnection(ordb))
-                //{
-                    //conn.Open();
+                
 
-                    string query = "SELECT  title ,avgrating, release_date, description  FROM movies";
+                    string query = "SELECT id, title ,avgrating, release_date, description  FROM movies";
 
                     adapter = new OracleDataAdapter(query, ordb); // Pass the connection object, not string
                     ds = new DataSet();
                     adapter.Fill(ds);
 
-                    dataGridView1.DataSource = ds.Tables[0];
-                //}
+                // Set primary key for update/delete to work
+                DataColumn[] keyColumns = new DataColumn[1];
+                keyColumns[0] = ds.Tables[0].Columns["id"];
+                ds.Tables[0].PrimaryKey = keyColumns;
+
+                dataGridView1.DataSource = ds.Tables[0];
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.Columns["id"].Visible = false;
+                dataGridView1.AllowUserToResizeColumns = true;
+                dataGridView1.Columns["description"].Width = 300; // adjust width as needed
+
             }
             catch (Exception ex)
             {
@@ -54,12 +64,12 @@ namespace SWELab1
             }
         }
 
-
+        
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             string searchTerm = textBox1.Text.Trim();
@@ -91,32 +101,46 @@ namespace SWELab1
 
                 // Bind the results to DataGridView
                 dataGridView1.DataSource = ds.Tables[0];
+              
+                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        /*  private void DisplayMovieDetails(string movieId)
+          {
+              MovieDetailsForm movieForm = new MovieDetailsForm(movieId,userId);
+              movieForm.ShowDialog(); // Opens the MovieDetailsForm as a modal
+
+          }*/
+
+        private void DisplayMovieDetails(string movieId)
+        {
+            MovieDetailsForm movieForm = new MovieDetailsForm(movieId, userId);
+            movieForm.Owner = this;  
+            movieForm.Show();       
+            this.Hide();            
+        }
+
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             // Check if a valid row is clicked (not the header row)
             if (e.RowIndex >= 0)
             {
-                // Get the movie ID from the clicked row (assuming the 'id' is in the first column)
-                //string movieId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+              
                 string movieId = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
-
-                // Pass the movie ID to the new form to display movie details
+                //MessageBox.Show("Movie ID: " + movieId);              
                 DisplayMovieDetails(movieId);
+              
             }
+           
+           
         }
-        private void DisplayMovieDetails(string movieId)
-        {
-            MovieDetailsForm movieForm = new MovieDetailsForm(movieId);
-            movieForm.ShowDialog(); // Opens the MovieDetailsForm as a modal
-        }
-
-
     }
 
 }

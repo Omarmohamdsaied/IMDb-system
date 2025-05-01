@@ -209,5 +209,20 @@
   <ItemGroup>
     <None Include="Resources\7.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8b955864-7307-4d41-8ded-c194170f5305-2729152590.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\png-transparent-black-and-white-quadro-yellow-imdb-white-text-rectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ae4378f93ef100863a42c52c23c1640c.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imdb-internet-movie-database5351.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\360_F_610184436_4O7qmwXfpCx6Bl5DWaVlkEjqwgp9A9Dx.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

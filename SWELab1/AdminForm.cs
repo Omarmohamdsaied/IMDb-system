@@ -21,17 +21,14 @@ namespace SWELab1
         OracleConnection conn;
         OracleDataAdapter adapter;
         OracleCommandBuilder builder;
+        private string userId;
         DataSet ds;
 
-        List<Movie> movies = new List<Movie>
-        {
-           new Movie { Title = "The Godfather", AvgRating = 9.2, ReleaseDate = new DateTime(1972, 3, 24), Description = "Crime drama" },
-           new Movie { Title = "Interstellar", AvgRating = 8.6, ReleaseDate = new DateTime(2014, 11, 7), Description = "Sci-fi epic" },
-           new Movie { Title = "Scent of a Woman", AvgRating = 8.0, ReleaseDate = new DateTime(1992, 12, 23), Description = "Drama" }
-        };
-        public AdminForm()
+     
+        public AdminForm(string userId)
         {
             InitializeComponent();
+            this.userId = userId;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -46,29 +43,30 @@ namespace SWELab1
             public string Description { get; set; }
         }
 
+     
+
         private void LoadMovies()
         {
             try
             {
-                // string query = "SELECT  title ,avgrating, release_date, description  FROM movies";
+                string query = "SELECT id, title, avgrating, release_date, description FROM movies";
+                adapter = new OracleDataAdapter(query, ordb);
+                ds = new DataSet();
+                adapter.Fill(ds);
 
-                //adapter = new OracleDataAdapter(query, ordb); // Pass the connection object, not string
-                //ds = new DataSet();
-                //adapter.Fill(ds);
+                // Set primary key for update/delete to work
+                DataColumn[] keyColumns = new DataColumn[1];
+                keyColumns[0] = ds.Tables[0].Columns["id"];
+                ds.Tables[0].PrimaryKey = keyColumns;
 
-                //dataGridView1.DataSource = ds.Tables[0];
-
-             
-
-                dataGridView1.DataSource = movies;
-
-
+                dataGridView1.DataSource = ds.Tables[0];
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
 
         private void LoadMovies(string searchTerm = "")
@@ -115,7 +113,7 @@ namespace SWELab1
                 // Get the movie ID from the clicked row (assuming the 'id' is in the first column)
                 //string movieId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string movieId = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
-
+                //Console.WriteLine(movieId);
                 // Pass the movie ID to the new form to display movie details
                 DisplayMovieDetails(movieId);
             }
@@ -126,14 +124,10 @@ namespace SWELab1
 
         private void DisplayMovieDetails(string movieId)
         {
-            MovieDetailsForm movieForm = new MovieDetailsForm(movieId);
+            MovieDetailsForm movieForm = new MovieDetailsForm(movieId,userId);
             movieForm.ShowDialog(); // Opens the MovieDetailsForm as a modal
         }
 
-        //private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        //{
-
-        //}
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -147,23 +141,41 @@ namespace SWELab1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //builder = new OracleCommandBuilder(adapter);
-            //adapter.Update(ds.Tables[0]);
+            builder = new OracleCommandBuilder(adapter);
+            adapter.Update(ds.Tables[0]);
         }
+
+   
 
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null)
             {
                 int index = dataGridView1.CurrentRow.Index;
-
-                if (index >= 0 && index < movies.Count)
+                if (index >= 0 && index < ds.Tables[0].Rows.Count)
                 {
-                    movies.RemoveAt(index);
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = movies;
+                    ds.Tables[0].Rows[index].Delete(); // Mark row as deleted
+                    
+                    try
+                    {
+                        builder = new OracleCommandBuilder(adapter);
+                        adapter.Update(ds.Tables[0]);  // Apply deletion to DB
+
+                        // Reload to reflect updated data
+                        LoadMovies();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error deleting row: " + ex.Message);
+                    }
                 }
             }
         }
+        private void AdminForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();  // Fully exits the app, including background processes
+        }
     }
 }
+
+

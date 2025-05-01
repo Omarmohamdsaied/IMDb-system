@@ -1,54 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dell\\source\\repos\\SWELab1\\",
+  "WorkspaceRootPath": "E:\\admin swe\\IMDb-system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|c:\\users\\dell\\source\\repos\\swelab1\\swelab1\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\swelab1\\moviedetailsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\moviedetailsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\registerationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\registerationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:SWELab1\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\RegisterationForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:SWELab1\\RegisterationForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\swelab1\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\swelab1\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:SWELab1\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\MovieDetailsForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:SWELab1\\MovieDetailsForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\swelab1\\registerationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\registerationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\registerationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\IMDb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:SWELab1\\IMDb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\moviedetailsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\moviedetailsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\swelab1\\imdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|e:\\admin swe\\imdb-system\\swelab1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\moviedetailsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\moviedetailsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\imdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\imdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\imdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\imdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|C:\\Users\\dell\\source\\repos\\SWELab1\\swelab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|E:\\admin swe\\IMDb-system\\swelab1\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B38BE960-C5E3-409A-BEEE-5493EF0FB829}|SWELab1\\IMDb_code.csproj|solutionrelative:swelab1\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -73,140 +65,131 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MovieDetailsForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\MovieDetailsForm.cs",
-              "RelativeDocumentMoniker": "SWELab1\\MovieDetailsForm.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\MovieDetailsForm.cs [Design]",
-              "RelativeToolTip": "SWELab1\\MovieDetailsForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T12:20:49.751Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserForm.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\UserForm.cs",
-              "RelativeDocumentMoniker": "SWELab1\\UserForm.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\UserForm.cs",
-              "RelativeToolTip": "SWELab1\\UserForm.cs",
-              "ViewState": "AgIAAAEAAADgMjMzMzMrwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "IMDb.cs [Design]",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\IMDb.cs",
+              "RelativeDocumentMoniker": "SWELab1\\IMDb.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\IMDb.cs [Design]",
+              "RelativeToolTip": "SWELab1\\IMDb.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T10:24:04.23Z",
+              "WhenOpened": "2025-05-01T03:21:05.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IMDb.cs",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\IMDb.cs",
+              "RelativeDocumentMoniker": "SWELab1\\IMDb.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\IMDb.cs",
+              "RelativeToolTip": "SWELab1\\IMDb.cs",
+              "ViewState": "AgIAAA8AAABAaGZmZmYowBMAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T03:21:13.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\Form1.cs",
+              "RelativeDocumentMoniker": "SWELab1\\Form1.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\Form1.cs",
+              "RelativeToolTip": "SWELab1\\Form1.cs",
+              "ViewState": "AgIAAG0AAAAglpmZmVkvwHkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T03:05:47.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegisterationForm.cs",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\RegisterationForm.cs",
+              "RelativeDocumentMoniker": "SWELab1\\RegisterationForm.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\RegisterationForm.cs",
+              "RelativeToolTip": "SWELab1\\RegisterationForm.cs",
+              "ViewState": "AgIAAEYAAACw/P///38kwFUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T02:56:13.194Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Form1.cs",
-              "RelativeDocumentMoniker": "SWELab1\\Form1.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Form1.cs",
-              "RelativeToolTip": "SWELab1\\Form1.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T00:25:38.37Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RegisterationForm.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\RegisterationForm.cs",
-              "RelativeDocumentMoniker": "SWELab1\\RegisterationForm.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\RegisterationForm.cs",
-              "RelativeToolTip": "SWELab1\\RegisterationForm.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T19:58:26.071Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdminForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\AdminForm.cs",
-              "RelativeDocumentMoniker": "SWELab1\\AdminForm.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\AdminForm.cs [Design]",
-              "RelativeToolTip": "SWELab1\\AdminForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T19:09:56.398Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\UserForm.cs",
-              "RelativeDocumentMoniker": "SWELab1\\UserForm.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\UserForm.cs [Design]",
-              "RelativeToolTip": "SWELab1\\UserForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T19:08:46.839Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Program.cs",
-              "RelativeDocumentMoniker": "SWELab1\\Program.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Program.cs",
-              "RelativeToolTip": "SWELab1\\Program.cs",
-              "ViewState": "AgIAAAYAAADAMjMzMzMLwBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T22:27:32.395Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MovieDetailsForm.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\MovieDetailsForm.cs",
-              "RelativeDocumentMoniker": "SWELab1\\MovieDetailsForm.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\MovieDetailsForm.cs",
-              "RelativeToolTip": "SWELab1\\MovieDetailsForm.cs",
-              "ViewState": "AgIAACQAAAAgzMzMzIwiwDAAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T12:21:17.418Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "RegisterationForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\RegisterationForm.cs",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\RegisterationForm.cs",
               "RelativeDocumentMoniker": "SWELab1\\RegisterationForm.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\RegisterationForm.cs [Design]",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\RegisterationForm.cs [Design]",
               "RelativeToolTip": "SWELab1\\RegisterationForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T19:32:46.838Z"
+              "WhenOpened": "2025-05-01T02:54:13.417Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserForm.cs",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\UserForm.cs",
+              "RelativeDocumentMoniker": "SWELab1\\UserForm.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\UserForm.cs",
+              "RelativeToolTip": "SWELab1\\UserForm.cs",
+              "ViewState": "AgIAAAgAAAAABgAAAMAtwHgAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T01:13:05.81Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "IMDb.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\IMDb.cs",
-              "RelativeDocumentMoniker": "SWELab1\\IMDb.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\IMDb.cs",
-              "RelativeToolTip": "SWELab1\\IMDb.cs",
+              "Title": "UserForm.cs [Design]",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\UserForm.cs",
+              "RelativeDocumentMoniker": "SWELab1\\UserForm.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\UserForm.cs [Design]",
+              "RelativeToolTip": "SWELab1\\UserForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T21:19:57.786Z"
+              "WhenOpened": "2025-05-01T01:12:59.952Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IMDb.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\IMDb.cs",
-              "RelativeDocumentMoniker": "SWELab1\\IMDb.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\IMDb.cs [Design]",
-              "RelativeToolTip": "SWELab1\\IMDb.cs [Design]",
+              "DocumentIndex": 5,
+              "Title": "MovieDetailsForm.cs [Design]",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\MovieDetailsForm.cs",
+              "RelativeDocumentMoniker": "SWELab1\\MovieDetailsForm.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\MovieDetailsForm.cs [Design]",
+              "RelativeToolTip": "SWELab1\\MovieDetailsForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T20:53:34.584Z"
+              "WhenOpened": "2025-04-26T12:20:49.751Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Form1.cs",
-              "RelativeDocumentMoniker": "SWELab1\\Form1.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\SWELab1\\SWELab1\\Form1.cs [Design]",
-              "RelativeToolTip": "SWELab1\\Form1.cs [Design]",
+              "DocumentIndex": 3,
+              "Title": "MovieDetailsForm.cs",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\MovieDetailsForm.cs",
+              "RelativeDocumentMoniker": "SWELab1\\MovieDetailsForm.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\MovieDetailsForm.cs",
+              "RelativeToolTip": "SWELab1\\MovieDetailsForm.cs",
+              "ViewState": "AgIAADoBAACAv5mZmVkjwEwBAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T22:46:59.519Z"
+              "WhenOpened": "2025-04-26T12:21:17.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\admin swe\\IMDb-system\\SWELab1\\Program.cs",
+              "RelativeDocumentMoniker": "SWELab1\\Program.cs",
+              "ToolTip": "E:\\admin swe\\IMDb-system\\SWELab1\\Program.cs",
+              "RelativeToolTip": "SWELab1\\Program.cs",
+              "ViewState": "AgIAAAQAAABAMjMzMzMnwAwAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T22:27:32.395Z",
+              "EditorCaption": ""
             }
           ]
         }
