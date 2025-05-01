@@ -1,12 +1,12 @@
 -- 2.1 CreateUser
 CREATE OR REPLACE PROCEDURE CreateUser(
   p_email      IN VARCHAR2,
-  p_password   IN VARCHAR2,    -- already hashed
+  p_password   IN VARCHAR2,
   p_full_name  IN VARCHAR2
 ) AS
 BEGIN
-  INSERT INTO users(email, password_hash, full_name, role)
-    VALUES (p_email, p_password, p_full_name, 'USER');
+  INSERT INTO users(user_id, email, password_hash, full_name, role)
+    VALUES (seq_users.NEXTVAL, p_email, p_password, p_full_name, 'USER');
 END CreateUser;
 /
 
@@ -23,9 +23,9 @@ BEGIN
       FROM movies m
       LEFT JOIN movie_genres mg ON m.movie_id = mg.movie_id
       LEFT JOIN genres g        ON mg.genre_id = g.genre_id
-     WHERE   (p_title IS NULL OR LOWER(m.title) LIKE '%'||LOWER(p_title)||'%')
-       AND   (p_genre IS NULL OR LOWER(g.name) = LOWER(p_genre))
-       AND   (p_year  IS NULL OR m.release_year = p_year)
+     WHERE (p_title IS NULL OR LOWER(m.title) LIKE '%'||LOWER(p_title)||'%')
+       AND (p_genre IS NULL OR LOWER(g.name) = LOWER(p_genre))
+       AND (p_year IS NULL OR m.release_year = p_year)
      ORDER BY m.title;
 END SearchMovies;
 /
@@ -37,21 +37,17 @@ CREATE OR REPLACE PROCEDURE GetMovieDetails(
   cur_reviews OUT SYS_REFCURSOR
 ) AS
 BEGIN
-  -- metadata + avg_rating + aggregated genres & cast
   OPEN cur_meta FOR
-    SELECT m.*, 
-           LISTAGG(g.name, ', ')       WITHIN GROUP (ORDER BY g.name) AS genres,
-           LISTAGG(a.name||' AS '||mc.character_name, ', ')
-             WITHIN GROUP (ORDER BY a.name) AS cast_list
+    SELECT m.movie_id, m.title, m.release_year, m.description, m.poster_url, m.avg_rating,
+           (SELECT LISTAGG(g.name, ', ') WITHIN GROUP (ORDER BY g.name)
+              FROM movie_genres mg JOIN genres g ON mg.genre_id = g.genre_id
+             WHERE mg.movie_id = m.movie_id) AS genres,
+           (SELECT LISTAGG(a.name||' AS '||mc.character_name, ', ') WITHIN GROUP (ORDER BY a.name)
+              FROM movie_cast mc JOIN actors a ON mc.actor_id = a.actor_id
+             WHERE mc.movie_id = m.movie_id) AS cast_list
       FROM movies m
-      LEFT JOIN movie_genres mg ON m.movie_id = mg.movie_id
-      LEFT JOIN genres g        ON mg.genre_id = g.genre_id
-      LEFT JOIN movie_cast mc   ON m.movie_id = mc.movie_id
-      LEFT JOIN actors a        ON mc.actor_id = a.actor_id
-     WHERE m.movie_id = p_movie_id
-  GROUP BY m.movie_id, m.title, m.release_year, m.description, m.poster_url, m.avg_rating;
+     WHERE m.movie_id = p_movie_id;
 
-  -- user reviews
   OPEN cur_reviews FOR
     SELECT r.review_id, r.user_id, u.full_name, r.review_text, r.created_at, r.updated_at
       FROM reviews r
@@ -62,46 +58,43 @@ END GetMovieDetails;
 /
 
 -- 2.4 SubmitRating
-CREATE OR REPLACE PROCEDURE SubmitRating(
-  p_user_id    IN  NUMBER,
-  p_movie_id   IN  NUMBER,
-  p_value      IN  NUMBER,
-  out_msg      OUT VARCHAR2
-) AS
-  v_cnt INTEGER;
-BEGIN
-  IF p_value NOT BETWEEN 1 AND 10 THEN
-    out_msg := 'Error: rating must be between 1 and 10.';
-    RETURN;
-  END IF;
+-- CREATE OR REPLACE PROCEDURE SubmitRating(
+--   p_user_id    IN  NUMBER,
+--   p_movie_id   IN  NUMBER,
+--   p_value      IN  NUMBER,
+--   out_msg      OUT VARCHAR2
+-- ) AS
+--   v_cnt INTEGER;
+-- BEGIN
+--   IF p_value NOT BETWEEN 1 AND 10 THEN
+--     out_msg := 'Error: rating must be between 1 and 10.';
+--     RETURN;
+--   END IF;
 
-  -- Try to update an existing rating
-  UPDATE ratings
-     SET rating_value = p_value,
-         created_at   = SYSTIMESTAMP
-   WHERE user_id  = p_user_id
-     AND movie_id = p_movie_id;
+--   UPDATE ratings
+--      SET rating_value = p_value,
+--          created_at   = SYSTIMESTAMP
+--    WHERE user_id  = p_user_id
+--      AND movie_id = p_movie_id;
 
-  v_cnt := SQL%ROWCOUNT;
+--   v_cnt := SQL%ROWCOUNT;
 
-  -- If no row was updated, insert a new one
-  IF v_cnt = 0 THEN
-    INSERT INTO ratings(user_id, movie_id, rating_value, created_at)
-    VALUES (p_user_id, p_movie_id, p_value, SYSTIMESTAMP);
-  END IF;
+--   IF v_cnt = 0 THEN
+--     INSERT INTO ratings(rating_id, user_id, movie_id, rating_value, created_at)
+--     VALUES (seq_ratings.NEXTVAL, p_user_id, p_movie_id, p_value, SYSTIMESTAMP);
+--   END IF;
 
-  -- Recalculate the average
-  UPDATE movies
-     SET avg_rating = (
-       SELECT ROUND(AVG(rating_value),2)
-         FROM ratings
-        WHERE movie_id = p_movie_id
-     )
-   WHERE movie_id = p_movie_id;
+--   UPDATE movies
+--      SET avg_rating = (
+--        SELECT ROUND(AVG(rating_value),2)
+--          FROM ratings
+--         WHERE movie_id = p_movie_id
+--      )
+--    WHERE movie_id = p_movie_id;
 
-  out_msg := 'Your rating has been submitted.';
-END SubmitRating;
-/
+--   out_msg := 'Your rating has been submitted.';
+-- END SubmitRating;
+-- /
 
 -- 2.5 WriteReview
 CREATE OR REPLACE PROCEDURE WriteReview(
@@ -115,8 +108,10 @@ BEGIN
     out_msg := 'Error: review text cannot be empty.';
     RETURN;
   END IF;
-  INSERT INTO reviews(user_id, movie_id, review_text)
-    VALUES (p_user_id, p_movie_id, p_text);
+
+  INSERT INTO reviews(review_id, user_id, movie_id, review_text)
+    VALUES (seq_reviews.NEXTVAL, p_user_id, p_movie_id, p_text);
+
   out_msg := 'Your review has been submitted.';
 END WriteReview;
 /
@@ -131,28 +126,33 @@ CREATE OR REPLACE PROCEDURE EditReview(
   v_owner NUMBER;
 BEGIN
   SELECT user_id INTO v_owner FROM reviews WHERE review_id = p_review_id;
+
   IF v_owner != p_user_id THEN
     out_msg := 'Error: cannot edit another user''s review.';
     RETURN;
   END IF;
+
   UPDATE reviews
-     SET review_text = p_text, updated_at = SYSTIMESTAMP
+     SET review_text = p_text,
+         updated_at  = SYSTIMESTAMP
    WHERE review_id = p_review_id;
+
   out_msg := 'Your review has been updated.';
 END EditReview;
 /
 
--- 2.7 DeleteReview
+-- 2.7 DeleteReview (Oracle 11g-compatible)
 CREATE OR REPLACE PROCEDURE DeleteReview(
   p_review_id IN NUMBER,
   p_user_id   IN NUMBER,
-  is_admin    IN BOOLEAN,
+  is_admin    IN NUMBER, -- Pass 1 for TRUE, 0 for FALSE
   out_msg     OUT VARCHAR2
 ) AS
   v_owner NUMBER;
 BEGIN
   SELECT user_id INTO v_owner FROM reviews WHERE review_id = p_review_id;
-  IF v_owner = p_user_id OR is_admin THEN
+
+  IF v_owner = p_user_id OR is_admin = 1 THEN
     DELETE FROM reviews WHERE review_id = p_review_id;
     out_msg := 'Review deleted.';
   ELSE
@@ -168,8 +168,9 @@ CREATE OR REPLACE PROCEDURE AddToWatchlist(
   out_msg     OUT VARCHAR2
 ) AS
 BEGIN
-  INSERT INTO watchlists(user_id, movie_id)
-    VALUES (p_user_id, p_movie_id);
+  INSERT INTO watchlists(watchlist_id, user_id, movie_id)
+    VALUES (seq_watchlists.NEXTVAL, p_user_id, p_movie_id);
+
   out_msg := 'Title successfully added to your watchlist.';
 EXCEPTION
   WHEN DUP_VAL_ON_INDEX THEN
@@ -185,13 +186,13 @@ CREATE OR REPLACE PROCEDURE RemoveFromWatchlist(
 ) AS
 BEGIN
   DELETE FROM watchlists
-   WHERE user_id = p_user_id
-     AND movie_id = p_movie_id;
+   WHERE user_id = p_user_id AND movie_id = p_movie_id;
+
   out_msg := 'Title removed from your watchlist.';
 END RemoveFromWatchlist;
 /
 
--- 2.10 DeleteMovie (Admin only)
+-- 2.10 DeleteMovie
 CREATE OR REPLACE PROCEDURE DeleteMovie(
   p_admin_id  IN NUMBER,
   p_movie_id  IN NUMBER,
