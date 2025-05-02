@@ -21,6 +21,7 @@ namespace SWELab1
         OracleConnection conn;
         public RegisterationForm()
         {
+            this.FormClosing += RegisterationForm_FormClosing;
             InitializeComponent();
         }
 
@@ -78,22 +79,48 @@ namespace SWELab1
             }
         }
 
-               private void RegisterationForm_FormClosed(object sender, FormClosedEventArgs e)
-               {
-                    Application.Exit();
-               }
+        
+
+        private void RegisterationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Application.Exit();
+            Application.Exit();
+            //Application.Exit();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form != this) // Skip the current form if you don't want to close it
+                {
+                    form.Close();
+                }
+            }
+            Application.Exit();
+        }
+
+
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
             if (this.Owner != null)
             {
                 this.Owner.Show();   // Show the previous form
+                this.Owner.BringToFront(); // Bring the owner form to the front, if it's not already
+
             }
-            else
-            {
-                Application.Exit();  // If no owner, ensure app shuts down
-            }
-            this.Close();
+            //else
+            //{
+            //    var mainForm = new UserForm(userId); // Or whatever your main form is called
+            //    mainForm.Show();
+            //}
+            //else
+            //{
+            //    Application.Exit();  // If no owner, ensure app shuts down
+            //}
+            this.Hide();
+            //var mainForm = new UserForm(userId); // Or whatever your main form is called
+            //mainForm.Show();
+            // Close the current form
         }
     }
 

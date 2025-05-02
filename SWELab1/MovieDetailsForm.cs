@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using Oracle.DataAccess.Client;
 
 namespace SWELab1
 {
@@ -25,6 +26,8 @@ namespace SWELab1
 
         public MovieDetailsForm(string id,string userId)
         {
+            this.FormClosing += MovieDetailsForm_FormClosing;
+
             InitializeComponent();
             movieId = id;
             this.userId = userId;
@@ -35,7 +38,6 @@ namespace SWELab1
             LoadMovieDetails();
         }
 
-       
 
 
         private void LoadMovieDetails()
@@ -45,37 +47,79 @@ namespace SWELab1
                 using (OracleConnection conn = new OracleConnection(ordb))
                 {
                     conn.Open();
-                    
-                    // --- Load Movie Details ---
-                    string movieQuery = "SELECT id,title, avgrating, release_date, description,poster_url  FROM movies WHERE id = :movieId";
-                    OracleCommand movieCmd = new OracleCommand(movieQuery, conn);
-                    movieCmd.Parameters.Add("movieId", movieId);
 
-                    using (OracleDataReader reader = movieCmd.ExecuteReader())
+
+                    try
                     {
-                        if (reader.Read())
+                        OracleCommand movieCmd = new OracleCommand("get_movie_details", conn);
+                        movieCmd.CommandType = CommandType.StoredProcedure;
+
+                        // Input parameter
+                        movieCmd.Parameters.Add("p_movie_id", OracleDbType.Int32).Value = movieId;
+
+                        // Output parameters
+                        movieCmd.Parameters.Add("p_title", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                        movieCmd.Parameters.Add("p_avgrating", OracleDbType.Decimal).Direction = ParameterDirection.Output;
+                        movieCmd.Parameters.Add("p_release_date", OracleDbType.Date).Direction = ParameterDirection.Output;
+                        movieCmd.Parameters.Add("p_description", OracleDbType.Clob).Direction = ParameterDirection.Output;
+                        movieCmd.Parameters.Add("p_poster_url", OracleDbType.Varchar2, 400).Direction = ParameterDirection.Output;
+
+                        movieCmd.ExecuteNonQuery();
+
+                        // Accessing output parameters
+                        label1.Text = "Movie Title: " + movieCmd.Parameters["p_title"].Value.ToString();
+                        label2.Text = "Rating: " + movieCmd.Parameters["p_avgrating"].Value.ToString();
+                        //label3.Text = "Release Date: " +
+                        //              Convert.ToDateTime(movieCmd.Parameters["p_release_date"].Value).ToString("yyyy-MM-dd");
+                        var releaseParam = movieCmd.Parameters["p_release_date"];
+                        if (releaseParam.Value != DBNull.Value)
                         {
-                            label1.Text = "Movie Title: " + reader["title"].ToString();
-                            label2.Text = "Rating: " + reader["avgrating"].ToString();
-                            label3.Text = "Release Date: " + Convert.ToDateTime(reader["release_date"]).ToString("yyyy-MM-dd");
-                            label4.Text = "Description: " + reader["description"].ToString();
+                            //OracleDate releaseDate =(OracleDate)Convert.ToDateTime(releaseParam.Value);
+                            OracleDate releaseDate = (OracleDate)releaseParam.Value;
 
-
-                            string posterPath = reader["poster_url"].ToString();
-                            if (File.Exists(posterPath))
-                            {
-                                pictureBox1.Image = Image.FromFile(posterPath);
-                            }
-                            else
-                            {
-                                // Optional: Show default image or clear the picture box
-                                pictureBox1.Image = null;
-                            }
-
+                            //label3.Text = "Release Date: " + releaseDate.ToString("yyyy-MM-dd");
+                            label3.Text = "Release Date: " + releaseDate.Value.ToString("yyyy-MM-dd");
                         }
+                        else
+                        {
+                            label3.Text = "Release Date: Unknown";
+                        }
+
+                        
+                        string description = "";
+                        OracleClob clob = movieCmd.Parameters["p_description"].Value as OracleClob;
+                        if (clob != null && !clob.IsNull)
+                        {
+                            clob.Seek(0, SeekOrigin.Begin); // Start from beginning
+                            //using (StreamReader reader = new StreamReader(clob, Encoding.UTF8))
+                            using (StreamReader reader = new StreamReader(clob, Encoding.Unicode))
+
+                            {
+                                description = reader.ReadToEnd();
+                            }
+                        }
+                        label4.Text = "Description: " + description;
+
+                        // Poster
+                        string posterPath = movieCmd.Parameters["p_poster_url"].Value.ToString();
+                        if (File.Exists(posterPath))
+                        {
+                            pictureBox1.Image = Image.FromFile(posterPath);
+                        }
+                        else
+                        {
+                            pictureBox1.Image = null;
+                        }
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error fetching movie details: " + ex.Message);
                     }
 
-                    // --- Load Actors using JOIN on actor_movies ---
+
                     string actorQuery = @"
                         SELECT a.id , a.name
                         FROM actors a
@@ -89,7 +133,7 @@ namespace SWELab1
                     DataTable actorTable = new DataTable();
                     adapter.Fill(actorTable);
 
-                   // dataGridView1.DataSource = actorTable;
+                    // dataGridView1.DataSource = actorTable;
 
                     flowLayoutPanel1.Controls.Clear();
                     foreach (DataRow row in actorTable.Rows)
@@ -101,18 +145,54 @@ namespace SWELab1
                         flowLayoutPanel1.Controls.Add(actorLabel);
                     }
 
-                    string checkQuery = "SELECT COUNT(*) FROM likes WHERE movie_id = :movieId AND user_id = :userId";
-                    OracleCommand checkCmd = new OracleCommand(checkQuery, conn);
-                    checkCmd.Parameters.Add("movieId", movieId);  // movieId should be a class-level variable
-                    checkCmd.Parameters.Add("userId", userId);    // userId should be passed to the form and stored
+                    // --- Check if the user has liked the movie ---
+                    // --- Check if the user has liked the movie ---
+                    try
+                    {
+                        OracleCommand checkCmd = new OracleCommand("check_like_exists", conn);
+                        checkCmd.CommandType = CommandType.StoredProcedure;
 
-                    int likeExists = Convert.ToInt32(checkCmd.ExecuteScalar());
-                    if(likeExists > 0)
-                        button1.Text = "remove like 💔";
-                    else
-                    button1.Text = "Like ❤️";
+                        // Input parameters
+                        checkCmd.Parameters.Add("p_movie_id", OracleDbType.Int32).Value = movieId;
+                        checkCmd.Parameters.Add("p_user_id", OracleDbType.Int32).Value = userId;
 
-                 
+                        // Output parameter
+                        OracleParameter existsParam = new OracleParameter("p_exists", OracleDbType.Int32);
+                        existsParam.Direction = ParameterDirection.Output;
+                        checkCmd.Parameters.Add(existsParam);
+
+                        checkCmd.ExecuteNonQuery();
+
+                        // Defensive null check
+                        int likeExists = 0;
+
+                    
+                        if (existsParam.Value != DBNull.Value && existsParam.Value != null)
+                        {
+                            try
+                            {
+                                OracleDecimal oracleDecimal = (OracleDecimal)existsParam.Value;
+                                likeExists = oracleDecimal.ToInt32();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Conversion error: " + ex.Message);
+                                likeExists = 0; // Fallback
+                            }
+                        }
+
+
+
+                        // Update button text
+                        button1.Text = likeExists > 0 ? "Remove Like 💔" : "Like ❤️";
+
+                        // Debug: View value type
+                      //  MessageBox.Show("Stored Proc Output Type: " + (existsParam.Value?.GetType()?.ToString() ?? "null"));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error checking like status: " + ex.Message);
+                    }
 
 
                     // --- Get total like count for the movie ---
@@ -122,12 +202,13 @@ namespace SWELab1
 
                     int totalLikes = Convert.ToInt32(likeCountCmd.ExecuteScalar());
                     labelLikeCount.Text = $"Total Likes: {totalLikes}";
+
                     // --- Load Reviews with User Name ---
                     string reviewQuery = @"
-                    SELECT u.name AS ""User Name"", r.text AS ""Review""
-                    FROM reviews r
-                    JOIN users u ON r.user_id = u.id
-                    WHERE r.movie_id = :movieId";
+                        SELECT u.name AS ""User Name"", r.text AS ""Review""
+                        FROM reviews r
+                        JOIN users u ON r.user_id = u.id
+                        WHERE r.movie_id = :movieId";
 
                     OracleCommand reviewCmd = new OracleCommand(reviewQuery, conn);
                     reviewCmd.Parameters.Add("movieId", movieId);
@@ -140,8 +221,6 @@ namespace SWELab1
                     dataGridView2.DataSource = reviewTable;
                     dataGridView2.AllowUserToAddRows = false;
                     dataGridView2.ClearSelection();
-
-
                 }
             }
             catch (Exception ex)
@@ -151,6 +230,7 @@ namespace SWELab1
         }
 
 
+   
 
 
 
@@ -218,10 +298,7 @@ namespace SWELab1
             }
 
         }
-        private void MovieDetailsForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
+   
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -319,18 +396,24 @@ namespace SWELab1
         {
 
         }
+        private void MovieDetailsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+            Application.Exit(); // Exit entire app if desired
+            
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             if (this.Owner != null)
             {
                 this.Owner.Show();   // Show the previous form
+                this.Owner.BringToFront(); // Bring the owner form to the front, if it's not already
+
             }
-            else
-            {
-                Application.Exit();  // If no owner, ensure app shuts down
-            }
-            this.Close();            // Close the current form
+        
+            this.Hide();
+            
         }
 
     }
