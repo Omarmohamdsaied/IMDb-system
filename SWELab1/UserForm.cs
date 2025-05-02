@@ -40,17 +40,25 @@ namespace SWELab1
             //LoadMoviesIntoCards();
         }
 
+   
+
         private void LoadMovies()
         {
             try
             {
-                
+                OracleConnection o = new OracleConnection(ordb); // Make sure this is set correctly
+                o.Open(); // Open the connection
 
-                    string query = "SELECT id, title ,avgrating, release_date, description  FROM movies";
 
-                    adapter = new OracleDataAdapter(query, ordb); // Pass the connection object, not string
-                    ds = new DataSet();
-                    adapter.Fill(ds);
+                OracleCommand cmd = new OracleCommand("GET_ALL_MOVIES", o);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Define the output parameter (REF CURSOR)
+                cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                adapter = new OracleDataAdapter(cmd);
+                ds = new DataSet();
+                adapter.Fill(ds);
 
                 // Set primary key for update/delete to work
                 DataColumn[] keyColumns = new DataColumn[1];
@@ -62,20 +70,52 @@ namespace SWELab1
                 dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.AllowUserToResizeColumns = true;
                 dataGridView1.Columns["description"].Width = 300; // adjust width as needed
-
+            }
+            catch (OracleException ex)
+            {
+                MessageBox.Show("Oracle Error: " + ex.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("General Error: " + ex.Message);
             }
         }
 
-        
+
+
+
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //Application.Exit();
+            Application.Exit();
+            //Application.Exit();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form != this) // Skip the current form if you don't want to close it
+                {
+                    form.Close();
+                }
+            }
             Application.Exit();
         }
-        
+
+
+
+        private void UserForm_FormClosing(object sender, FormClosedEventArgs e)
+        {
+            //Application.Exit();
+            Application.Exit();
+            //Application.Exit();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form != this) // Skip the current form if you don't want to close it
+                {
+                    form.Close();
+                }
+            }
+            Application.Exit();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string searchTerm = textBox1.Text.Trim();
@@ -117,12 +157,7 @@ namespace SWELab1
             }
         }
 
-        /*  private void DisplayMovieDetails(string movieId)
-          {
-              MovieDetailsForm movieForm = new MovieDetailsForm(movieId,userId);
-              movieForm.ShowDialog(); // Opens the MovieDetailsForm as a modal
-
-          }*/
+   
 
         private void DisplayMovieDetails(string movieId)
         {

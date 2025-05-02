@@ -14,6 +14,7 @@ namespace SWELab1
     {
         public IMDb()
         {
+            this.FormClosing += IMDb_FormClosing;
             InitializeComponent();
         }
 
@@ -24,8 +25,17 @@ namespace SWELab1
             this.Hide();               // hide current form (optional: you can also use this.Close())
         }
 
-        private void IMDb_FormClosed(object sender, FormClosedEventArgs e)
+        private void IMDb_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Application.Exit();
+            //Application.Exit();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form != this) // Skip the current form if you don't want to close it
+                {
+                    form.Close();
+                }
+            }
             Application.Exit();
         }
 

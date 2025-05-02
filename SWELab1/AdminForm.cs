@@ -27,6 +27,7 @@ namespace SWELab1
      
         public AdminForm(string userId)
         {
+            this.FormClosing += AdminForm_FormClosing;
             InitializeComponent();
             this.userId = userId;
         }
@@ -173,7 +174,16 @@ namespace SWELab1
         }
         private void AdminForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();  // Fully exits the app, including background processes
+            Application.Exit();
+            //Application.Exit();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form != this) // Skip the current form if you don't want to close it
+                {
+                    form.Close();
+                }
+            }
+            Application.Exit();
         }
     }
 }

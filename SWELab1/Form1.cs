@@ -21,6 +21,7 @@ namespace SWELab1
 
         public LogIn()
         {
+            this.FormClosing += Form1_FormClosing;
             InitializeComponent();
         }
 
@@ -46,10 +47,10 @@ namespace SWELab1
 
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+       /* private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             conn.Dispose();
-        }
+        }*/
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -121,8 +122,20 @@ namespace SWELab1
            
 
         }
-        private void LogIn_FormClosed(object sender, FormClosedEventArgs e)
+       
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
+            Application.Exit();
+            //Application.Exit();
+            foreach (Form form in Application.OpenForms)
+            {
+               if (form != this) // Skip the current form if you don't want to close it
+                {
+                    form.Close();
+                }
+            }
             Application.Exit();
         }
 
