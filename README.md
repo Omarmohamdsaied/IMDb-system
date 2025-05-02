@@ -24,4 +24,16 @@ This project is a web-based application that allows users to browse, rate, and r
 <img src="films_photos/screen5.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
 <img src="films_photos/screen6.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
 
+<div style="border: 2px solid #ccc; padding: 15px; border-radius: 10px; background-color: #f9f9f9; width: fit-content;">
+
+## Developers of This Art
+
+- [Eslam Amr](https://github.com/Eslam-Amr)  
+- [Omar Mohamed Saied](https://github.com/Omarmohamdsaied)  
+- [Abdallah Ibrahim](https://github.com/Apolo151)  
+- [Ali el Masri](https://github.com/ALIMaxsZ)  
+- [Abdelrahman Omran](https://github.com/abdelrahman-omran)  
+- [Moustafa Magdy](https://github.com/MoustafaMagdy10)  
+- [Moustafa Mousa](https://github.com/mostafamm44)  
+
 
