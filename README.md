@@ -15,4 +15,13 @@ This project is a web-based application that allows users to browse, rate, and r
 
 ## 📸Screenshots
 
-(to be continued ..)
+<img src="films_photos/screen1.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+<img src="films_photos/screen2.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+<img src="films_photos/screen3.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+<img src="films_photos/screen4.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+<img src="films_photos/screen7.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+<img src="films_photos/screen8.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+<img src="films_photos/screen5.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+<img src="films_photos/screen6.jpg" alt="Description" width="400" style="border: 2px solid #ccc; border-radius: 8px;">
+
+
