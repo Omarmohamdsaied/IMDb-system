@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using static SWELab1.AdminForm;
+using CrystalDecisions.Shared;
 
 
 namespace SWELab1
@@ -22,6 +23,9 @@ namespace SWELab1
         OracleDataAdapter adapter;
         DataSet ds;
         private string userId;
+        //
+        CrystalReport1 CR1;
+        CrystalReport2 CR2;
         public UserForm(string id)
         {
             InitializeComponent();
@@ -31,6 +35,8 @@ namespace SWELab1
         private void UserForm_Load(object sender, EventArgs e)
         {
             LoadMovies();
+            CR1 = new CrystalReport1();
+            CR2 = new CrystalReport2();
             //LoadMoviesIntoCards();
         }
 
@@ -175,6 +181,17 @@ namespace SWELab1
             }
            
            
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CR1.SetParameterValue(0, Convert.ToDateTime(textBox2.Text));
+            CR1.SetParameterValue(1, Convert.ToDateTime(textBox3.Text));
+            crystalReportViewer1.ReportSource = CR1;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            crystalReportViewer2.ReportSource = CR2;
         }
     }
 
